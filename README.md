@@ -1,5 +1,7 @@
 # AlphaMeta
 
+![macOS](https://img.shields.io/badge/Platform-macOS-000000?logo=apple)
+![Release](https://img.shields.io/github/v/release/kelvingao/alphameta?style=flat-square)
 ![Downloads](https://img.shields.io/github/downloads/kelvingao/alphameta/total?style=flat-square)
 
 AlphaMeta is an LLM-friendly IBKR (Interactive Brokers) trading tool providing real-time market data for stocks, options, futures, and crypto via a standardized REST API.
