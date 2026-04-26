@@ -28,8 +28,9 @@ description: IBKR trading API - query positions/orders/fills/balance, place/modi
    ```bash
    curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
      -H "Content-Type: application/json" \
-     -d '{"cmd": "<command>"}'
+     -d '{"cmd": "<from Command Index ONLY>"}'
    ```
+  ⚠️ Never put invented commands here！
 
 ## API Endpoints
 
@@ -41,17 +42,17 @@ description: IBKR trading API - query positions/orders/fills/balance, place/modi
 
 ## Command Index
 
-| Category                                             | Commands                                                                                                                                             | Use For                                         |
-| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [Portfolio](references/ref-portfolio.md)             | balance, executions, ls, orders, positions, report                                                                                                   | Leverage ratio, margin check, position analysis |
-| [Order Management](references/ref-orders.md)         | buy, cancel, evict, fast, limit, modify, scale, straddle                                                                                             | Place/modify/cancel orders                      |
-| [Live Market Quotes](references/ref-live-quotes.md)  | add, align, chains, depth, oadd, prequalify, qquote, range, remove, rm                                                                               | Real-time quotes, chains                        |
-| [Quote Management](references/ref-quote-mgmt.md)     | colorset, colorsload, qadd, qclean, qdelete, qlist, qloadsnapshot, qremove, qrestore, qrm, qsave, qsnapshot                                          | Quote groups, snapshots                         |
-| [Utilities](references/ref-utilities.md)             | advice, alert, alias, calendar, cash, clear, daydumper, details, expand, info, math, meta, paper, qualify, reconnect, reporter, say, simulate, unset | Calculator, alerts, TTS, contract info          |
-| [Predicate Management](references/ref-predicate.md)  | auto, ifclear, ifgroup, iflist, ifls, ifrm, ifthen                                                                                                   | Conditional triggers, automation                |
-| [Schedule](references/ref-schedule.md)               | sadd, scancel, slist                                                                                                                                 | Timed tasks, reminders                          |
-| [Task Management](references/ref-task.md)            | taskcancel, tasklist                                                                                                                                 | Async batch operations                          |
-| [Technical Indicators](references/ref-indicators.md) | dex, dge, gex, maxpain                                                                                                                               | Max pain, gamma exposure, volatility            |
+| Category                                             | Commands                                                                                                                                       | Use For                                         |
+| ---------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [Portfolio](references/ref-portfolio.md)             | balance, executions, ls, orders, positions, report                                                                                             | Leverage ratio, margin check, position analysis |
+| [Order Management](references/ref-orders.md)         | buy, cancel, evict, fast, limit, modify, scale, straddle                                                                                       | Place/modify/cancel orders                      |
+| [Live Market Quotes](references/ref-live-quotes.md)  | add, align, chains, depth, info, oadd, prequalify, qquote, range, remove, rm                                                                   | Real-time quotes, chains, contract details      |
+| [Quote Management](references/ref-quote-mgmt.md)     | colorset, colorsload, qadd, qclean, qdelete, qlist, qloadsnapshot, qremove, qrestore, qrm, qsave, qsnapshot                                    | Quote groups, snapshots                         |
+| [Utilities](references/ref-utilities.md)             | advice, alert, alias, calendar, cash, clear, daydumper, details, expand, math, meta, paper, qualify, reconnect, reporter, say, simulate, unset | Calculator, alerts, TTS                         |
+| [Predicate Management](references/ref-predicate.md)  | auto, ifclear, ifgroup, iflist, ifls, ifrm, ifthen                                                                                             | Conditional triggers, automation                |
+| [Schedule](references/ref-schedule.md)               | sadd, scancel, slist                                                                                                                           | Timed tasks, reminders                          |
+| [Task Management](references/ref-task.md)            | taskcancel, tasklist                                                                                                                           | Async batch operations                          |
+| [Technical Indicators](references/ref-indicators.md) | dex, dge, gex, maxpain                                                                                                                         | Max pain, gamma exposure, volatility            |
 ## Important Notes
 
 **Option OCC format** of 4 parts: `SYMBOL + YYMMDD + C|P + 8-DIGIT_STRIKE`  

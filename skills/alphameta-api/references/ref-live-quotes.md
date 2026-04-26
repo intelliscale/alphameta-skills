@@ -11,36 +11,45 @@ Real-time market quotes, including subscription, quick queries, market depth, an
 ## Examples
 
 ```bash
-# Subscribe to NVDA quotes
-add NVDA
+# Subscribe (required for info)
+add NVDA AAPL
+add NVDA260501C00175000  # OCC: NVDA | 260501 | C | $175
 
-# Get NVDA option chain for May 1st
+# Brace expansion - add multiple strikes at once
+add NVDA260501P00{150,175,200}000  # Puts: $150, $175, $200
+
+# Quick quotes (slow, supports multiple symbols)
+qquote NVDA AAPL MSFT
+
+# Option chain
 chains NVDA 05-01
 
-# One-time quote with volatility
-qquote NVDA260501C00175000
+# Detailed info (fast, requires add first)
+info NVDA
+info NVDA260501C00175000
 ```
 
 ## Gotchas
 
-> **`chains` returns strikes only**: List of strike prices, not call/put details. Use `qquote` with OCC format for details.
+> **`qquote`**: Slower one-time request, supports multiple symbols. Returns bid/ask/last/volume.
 >
-> **Pre-cache before 0DTE**: Use `prequalify` before trading same-day expiring options.
+> **`chains`**: Returns strikes only. Use `info`/`qquote` with OCC format for details.
 >
 > **`add` auto-saves**: Each `add` auto-calls `qsnapshot` to persist state.
 
 ## Commands
 
-| Command | Description |
-|---------|-------------|
-| `add` | Add symbols to live watchlist (supports brace expansion) |
-| `remove` | Remove symbols from watchlist |
-| `qquote` | One-time quote with volatility (IV/HV) |
-| `depth` | Market depth (multi-level BID/ASK) |
-| `chains` | Option chain strikes by expiration |
-| `prequalify` | Pre-cache contract eligibility |
-| `oadd` | Add symbols from pending orders |
-| `align` | Batch add ATM straddle/strangle/spread quotes |
-| `range` | Generate OCC symbols for price range |
+| Command      | Description                                                          |
+| ------------ | -------------------------------------------------------------------- |
+| `add`        | Add symbols to live watchlist (supports brace expansion)             |
+| `remove`     | Remove symbols from watchlist                                        |
+| `qquote`     | One-time quote with volatility (IV/HV)                               |
+| `depth`      | Market depth (multi-level BID/ASK)                                   |
+| `chains`     | Option chain strikes by expiration                                   |
+| `prequalify` | Pre-cache contract eligibility                                       |
+| `oadd`       | Add symbols from pending orders                                      |
+| `align`      | Batch add ATM straddle/strangle/spread quotes                        |
+| `range`      | Generate OCC symbols for price range                                 |
+| `info`       | Contract details with Greeks, IV/HV, ATR, RSI (requires `add` first) |
 
 Use `search` for command details.
