@@ -4,6 +4,9 @@ Helper commands for information query, alerts, TTS, calculations, and system man
 
 ## Use Cases
 
+> Check economic calendar (Fed rate, CPI, NFP) for trading decisions
+> Check earnings calendar for big tech report dates
+> Check IPO calendar for new stock listings
 > Calculate option Max Pain for specific expiration
 > Set price alerts for symbols
 > Get contract details with Greeks
@@ -12,14 +15,26 @@ Helper commands for information query, alerts, TTS, calculations, and system man
 ## Examples
 
 ```bash
-# Get contract metadata
-info AAPL
+# Economic calendar (default - next 7 days)
+calendar
+
+# Earnings calendar
+calendar earnings
+
+# IPO calendar
+calendar ipo
+
+# Get contract metadata with Greeks
+details AAPL
 
 # Calculate max pain
 maxpain NVDA 05-01
 
 # Set price alert
 alert AAPL > 200
+
+# Export historical K-line
+daydumper AAPL 2026-01-01 2026-04-01
 
 # Text-to-speech announcement
 say "AAPL is up 2%"
@@ -38,7 +53,7 @@ say "AAPL is up 2%"
 | Command | Description |
 |---------|-------------|
 | `cash` | Account cash info |
-| `calendar` | US stock trading calendar |
+| `calendar` | Financial calendar (econ/earnings/ipo) |
 | `math` | Calculator (+-*/ sqrt() sin() cos()) |
 | `details` | Market data with Greeks (requires subscription) |
 | `info` | Contract metadata (ID, type, exchange) |
