@@ -1,8 +1,6 @@
-# AlphaMeta
+# AlphaMeta Skills
 
-![macOS](https://img.shields.io/badge/Platform-macOS-000000?logo=apple)
-![Release](https://img.shields.io/github/v/release/kelvingao/alphameta?style=flat-square)
-![Downloads](https://img.shields.io/github/downloads/kelvingao/alphameta/total?style=flat-square)
+![Skills](https://img.shields.io/badge/Skills-6-green?style=flat-square)
 [![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/kelvingao/.github/blob/main/profile/QR.png)
 
 AlphaMeta makes your AI assistant:
@@ -11,25 +9,43 @@ AlphaMeta makes your AI assistant:
 
 6 skills covering market data, order management, portfolio analysis, technical indicators, conditional automation, and utilities across stocks / options / futures / crypto.
 
-## Prerequisites
+## Install
 
-**Install (macOS):**
 ```bash
-curl -fsSL https://alphameta.app/install.sh | bash
+# Install everything globally (~/.claude/skills/)
+npx skills add intelliscale/alphameta-skills -g
+
+# Or just one skill, globally
+npx skills add intelliscale/alphameta-skills -g --skill alphameta-order
 ```
 
-**Start service:**
+---
+
+## Update
+
 ```bash
-alphameta start
+# Update all skills
+npx skills update -g
+
+# Update a single skill
+npx skills update alphameta-order -g
 ```
 
-**Check status:**
-```bash
-curl "http://127.0.0.1:18080/health"
-# → {"status": "ok", "ib_connected": true, "account_id": "U12345678"}
-```
+---
 
-## Skills
+## What you can ask
+
+Ask your AI assistant naturally (supports 中文 / English):
+
+- *"我的 NVDA 持仓现在盈亏如何？"* / *"How is my NVDA position doing?"*
+- *"帮我买入 10 手 SPY 260530 500 看跌期权"* / *"Buy 10 SPY May 30 500 puts"*
+- *"计算 GLD260501P440 的 delta 和 gamma"* / *"What's the delta on GLD260501P440?"*
+- *"当 TSLA 跌破 150 美元时平仓"* / *"Close my TSLA position if it drops below $150"*
+- *"显示 GLD 期权链，IV 排序"* / *"Show me GLD option chain sorted by IV"*
+
+---
+
+## What's inside
 
 | Group | Skills |
 |---|---|
@@ -40,24 +56,32 @@ curl "http://127.0.0.1:18080/health"
 | **Automation** | [`alphameta-predicate`](skills/alphameta-predicate/SKILL.md) — Conditional triggers, monitoring, auto-execution |
 | **Utilities** | [`alphameta-utilities`](skills/alphameta-utilities/SKILL.md) — Calculator, calendar, TTS alerts, paper trading, simulate |
 
-## Example Queries
+---
 
-Ask your AI assistant naturally (supports 中文 / English):
+## Prerequisites
 
-- *"我的 NVDA 持仓现在盈亏如何？"* / *"How is my NVDA position doing?"*
-- *"帮我买入 10 手 SPY 260530 500 看跌期权"* / *"Buy 10 SPY May 30 500 puts"*
-- *"计算 GLD260501P440 的 delta 和 gamma"* / *"What's the delta on GLD260501P440?"*
-- *"当 TSLA 跌破 150 美元时平仓"* / *"Close my TSLA position if it drops below $150"*
-- *"显示 GLD 期权链，IV 排序"* / *"Show me GLD option chain sorted by IV"*
+You need the AlphaMeta server running (for live quotes, your positions, orders):
 
+```bash
+# Install
+curl -fsSL https://alphameta.app/install.sh | bash
 
+# Start Server
+alphameta start
+
+# Check status
+curl "http://127.0.0.1:18080/health"
+# → {"status": "ok", "ib_connected": true, "account_id": "U12345678"}
+```
+
+---
 
 ## Architecture
 
 ```
 User Query → AI Assistant → AlphaMeta Skills → REST API → IBKR Gateway
                                    ↓
-                            Local AlphaMeta Server (port 18080)
+                            AlphaMeta Server (port 18080)
 ```
 
 AlphaMeta runs as a local service connecting to IBKR, exposing a clean REST API that your AI assistant can call using natural language.

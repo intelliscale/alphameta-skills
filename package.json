@@ -1,0 +1,14 @@
+{
+  "name": "@intelliscale/alphameta-skills",
+  "version": "1.0.0",
+  "description": "AlphaMeta skills - IBKR trading via natural language",
+  "main": "skills/",
+  "files": ["skills/"],
+  "keywords": ["alphameta", "skills", "ibkr", "trading", "options"],
+  "author": "Kelvin Gao",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/intelliscale/alphameta-skills"
+  }
+}
