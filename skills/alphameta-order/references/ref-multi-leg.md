@@ -38,7 +38,7 @@ buy "<leg1> <ratio1> <occ1> <leg2> <ratio2> <occ2> ..." <qty> AF @ <net_price>
 | `<ratio>` | Internal ratio per leg (e.g., 1 for even, 2 for butterfly body) |
 | `<qty>` | External quantity multiplied by ratio = actual contracts |
 | `AF` | Algo type (Adaptive Fast) |
-| `<net_price>` | Net credit (+) or debit (-) per **base unit** (before × qty) |
+| `<net_price>` | Net credit (-) or debit (+) per **base unit** (before × qty) |
 
 **Note**: For simple rolls and vertical spreads, ratio is almost always `1:1`.
 Ratio > 1 is used for unbalanced strategies like butterflies (ratio 1:2:1)
@@ -80,9 +80,8 @@ Strike: **price × 1000**, then pad to 8 digits.
 
 ```bash
 # Internal ratio 1:1, external qty 8 → actual 8:8
-# Net credit: $5.35/base unit (new premium - close premium)
-
-buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35
+# Net credit: -$5.35/base unit (negative = you receive)
+buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ -5.35
 ```
 
 ### Roll Put Down (Lower Strike)
@@ -91,7 +90,7 @@ buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35
 
 ```bash
 # Internal ratio 1:1, external qty 8 → actual 8:8
-buy "btc 1 GLD260501P00044000 sto 1 GLD260501P00043000" 8 AF @ 2.50
+buy "btc 1 GLD260501P00044000 sto 1 GLD260501P00043000" 8 AF @ -2.50
 ```
 
 ### Roll Call Up (Higher Strike)
@@ -100,7 +99,7 @@ buy "btc 1 GLD260501P00044000 sto 1 GLD260501P00043000" 8 AF @ 2.50
 
 ```bash
 # Internal ratio 1:1, external qty 5 → actual 5:5
-buy "btc 1 AAPL260515C00150000 sto 1 AAPL260515C00160000" 5 AF @ 3.00
+buy "btc 1 AAPL260515C00150000 sto 1 AAPL260515C00160000" 5 AF @ -3.00
 ```
 
 ---
@@ -111,6 +110,7 @@ buy "btc 1 AAPL260515C00150000 sto 1 AAPL260515C00160000" 5 AF @ 3.00
 
 ```bash
 # Buy 1 Call @ $170, Sell 1 Call @ $175 (same expiry)
+# Net debit: $2.00/base unit (positive = you pay)
 # Internal ratio 1:1, external qty 1 → actual 1:1
 buy "bto 1 AAPL260501C00170000 sto 1 AAPL260501C00175000" 1 AF @ 2.00
 ```
@@ -119,16 +119,18 @@ buy "bto 1 AAPL260501C00170000 sto 1 AAPL260501C00175000" 1 AF @ 2.00
 
 ```bash
 # Sell 1 Put @ $180, Buy 1 Put @ $170 (same expiry)
+# Net credit: -$3.50/base unit (negative = you receive)
 # Internal ratio 1:1, external qty 1 → actual 1:1
-buy "sto 1 AAPL260515P00180000 bto 1 AAPL260515P00170000" 1 AF @ 3.50
+buy "sto 1 AAPL260515P00180000 bto 1 AAPL260515P00170000" 1 AF @ -3.50
 ```
 
 ### Iron Condor
 
 ```bash
 # Short $380P/$390P spread + Short $450C/$460C spread
+# Net credit: -$1.50/base unit (negative = you receive)
 # Internal ratio 1:1:1:1, external qty 50 → actual 50:50:50:50
-buy "sto 1 AAPL260515P00380000 btc 1 AAPL260515P00390000 sto 1 AAPL260515C00450000 btc 1 AAPL260515C00460000" 50 AF @ 1.50
+buy "sto 1 AAPL260515P00380000 btc 1 AAPL260515P00390000 sto 1 AAPL260515C00450000 btc 1 AAPL260515C00460000" 50 AF @ -1.50
 ```
 
 ### Straddle
@@ -160,27 +162,59 @@ buy "bto 1 AAPL260501C00170000 sto 2 AAPL260501C00175000 bto 1 AAPL260501C001800
 
 ## Pricing Multi-Leg Orders
 
-### Net Credit (You Receive)
+### Net Credit (You Receive Money)
 
 ```bash
-# Spread nets you $2.00 credit per contract
-buy "bto 1 AAPL260501C00170000 sto 1 AAPL260501C00175000" 2.00 AF
+# Put Credit Spread: sell higher strike, buy lower strike
+# Net credit: -$2.00/base unit (negative = you receive)
+buy "sto 1 AAPL260515P00180000 bto 1 AAPL260515P00170000" 1 AF @ -2.00
 ```
 
-### Net Debit (You Pay)
+### Net Debit (You Pay Money)
 
 ```bash
-# If net is negative, you pay (debit spread)
-buy "bto 1 AAPL260501C00170000 bto 1 AAPL260501P00170000" -8.00 AF
-# Negative price = debit (you pay)
+# Straddle: buy both call and put = net debit
+# Net debit: $8.00/base unit (positive = you pay)
+buy "bto 1 AAPL260501C00170000 bto 1 AAPL260501P00170000" 100 AF @ 8.00
 ```
 
 ### Midpoint Pricing
 
 ```bash
-# Use AF (Adaptive Fast) for automatic price optimization
+# Use AF (Adaptive Fast) to execute at market midpoint
 buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF
 ```
+
+---
+
+## ⚠️ Price Sign Convention
+
+`info` and `buy` use the **same** sign convention:
+**negative = credit (you receive), positive = debit (you pay)**.
+
+### How to read `info` combo bag quotes
+
+```
+info bid  -1.45  →  market buys your combo, you receive $1.45
+info ask  -1.10  →  market sells you the combo, you receive $1.10
+```
+
+### How to set `buy` @ price
+
+| `info` bid | `buy` @ price | Meaning |
+|-----------|---------------|---------|
+| -1.45 | -1.45 | Net credit ≥ $1.45 |
+| -1.10 | -1.10 | Net credit ≥ $1.10 |
+| +8.00 | +8.00 | Net debit ≤ $8.00 |
+
+### Workflow
+
+1. `info "SELL 1 <conId1> BUY 1 <conId2>"` to get combo bid/ask
+2. For **credit spread** (sto + bto): `@ -|midpoint|` (negative)
+3. For **debit spread** (bto + sto): `@ +|midpoint|` (positive)
+
+**Example**: `info` shows bid -1.45 / ask -1.10 for a put credit spread.
+→ Midpoint ≈ -$1.28. Execute with: `@ -1.25` (negative, credit limit).
 
 ---
 
@@ -190,7 +224,7 @@ buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF
 
 ```bash
 # Internal ratio 1:1, external qty N → actual N:N
-buy "btc 1 <near_occ> sto 1 <far_occ>" <qty> AF @ <net_credit>
+buy "btc 1 <near_occ> sto 1 <far_occ>" <qty> AF @ -<net_credit>
 ```
 
 ### Pattern: Close Position Entirely
@@ -204,7 +238,10 @@ buy "btc 1 <occ>" <qty> MKT
 
 ```bash
 # Open vertical spread (internal ratio 1:1)
-buy "bto 1 <lower_strike_occ> sto 1 <higher_strike_occ>" <qty> AF @ <net_credit>
+# Credit spread: sto + bto, @ negative (you receive)
+# Debit spread:  bto + sto, @ positive (you pay)
+buy "sto 1 <short_leg_occ> bto 1 <long_leg_occ>" <qty> AF @ -<net_credit>
+buy "bto 1 <long_leg_occ> sto 1 <short_leg_occ>" <qty> AF @ <net_debit>
 ```
 
 ---
@@ -227,10 +264,10 @@ Internal ratio vs external quantity. For an 8-contract roll:
 
 ```bash
 # Correct: internal ratio 1:1, external qty 8 → actual 8:8
-buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35
+buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ -5.35
 
 # Wrong: internal ratio 8:4 → actual 8:4 (imbalanced!)
-buy "btc 8 GLD260501P00044000 sto 4 GLD260618P00044000" 8 5.35 AF
+buy "btc 8 GLD260501P00044000 sto 4 GLD260618P00044000" 8 -5.35 AF
 ```
 
 ### 3. Price = Net Per Base Unit
@@ -238,9 +275,9 @@ buy "btc 8 GLD260501P00044000 sto 4 GLD260618P00044000" 8 5.35 AF
 Price is the **net** credit/debit for the combo **per base unit** (before × external qty).
 
 ```bash
-# $5.35 net credit PER BASE UNIT, not total
-# External qty 8 × $5.35 = $4,280 total credit
-buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35
+# -$5.35 net credit PER BASE UNIT, not total
+# External qty 8 × -$5.35 = -$4,280 total credit
+buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ -5.35
 ```
 
 ### 4. Preview Before Execution
@@ -248,7 +285,7 @@ buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35
 Always preview to check margin impact:
 
 ```bash
-buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ 5.35 preview
+buy "btc 1 GLD260501P00044000 sto 1 GLD260618P00044000" 8 AF @ -5.35 preview
 ```
 
 ---
