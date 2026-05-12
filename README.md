@@ -50,7 +50,7 @@ Ask your AI assistant naturally (supports 中文 / English):
 | Group | Skills |
 |---|---|
 | **Live Market Data** | [`alphameta-quote`](skills/alphameta-quote/SKILL.md) — Real-time quotes, option chains, market depth, fundamental data |
-| **Order Management** | [`alphameta-order`](skills/alphameta-order/SKILL.md) — Place/modify/cancel orders, multi-leg strategies, rolling, spread |
+| **Order Management** | [`alphameta-order`](skills/alphameta-orders/SKILL.md) — Place/modify/cancel orders, multi-leg strategies, rolling, spread |
 | **Portfolio** | [`alphameta-portfolio`](skills/alphameta-portfolio/SKILL.md) — Positions, P&L, balance, margin, leverage ratio |
 | **Technical Analysis** | [`alphameta-technical`](skills/alphameta-technical/SKILL.md) — IV, Greeks (delta/gamma/vega/theta), max pain, gamma exposure |
 | **Automation** | [`alphameta-predicate`](skills/alphameta-predicate/SKILL.md) — Conditional triggers, monitoring, auto-execution |

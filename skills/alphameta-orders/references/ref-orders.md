@@ -54,4 +54,4 @@ Use `search` for command details.
 
 ## Multi-Leg Orders (Roll, Spread, Combo)
 
-For **rolling options**, **vertical spreads**, **straddles**, **iron condors**, and other multi-leg strategies, see [ref-multi-leg.md](ref-multi-leg.md) for full documentation including syntax, examples, and common patterns.
+For **rolling options**, **vertical spreads**, **straddles**, **iron condors**, and other multi-leg strategies, see [ref-multi-leg.md](skills/alphameta-orders/references/ref-multi-leg.md) for full documentation including syntax, examples, and common patterns.

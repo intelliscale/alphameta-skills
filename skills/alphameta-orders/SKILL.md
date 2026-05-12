@@ -39,8 +39,8 @@ curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
 
 | Category | Commands | Use For |
 |---|---|---|
-| [Order Management](references/ref-orders.md) | `buy`, `limit`, `fast`, `evict`, `expand`, `cancel`, `modify`, `scale` | Place/modify/cancel orders |
-| [Multi-Leg Orders](references/ref-multi-leg.md) | `bto`, `sto`, `btc`, `stc` + ratios + OCC | Roll, spread, straddle, condor, butterfly |
+| [Order Management](skills/alphameta-orders/references/ref-orders.md) | `buy`, `limit`, `fast`, `evict`, `expand`, `cancel`, `modify`, `scale` | Place/modify/cancel orders |
+| [Multi-Leg Orders](skills/alphameta-orders/references/ref-multi-leg.md) | `bto`, `sto`, `btc`, `stc` + ratios + OCC | Roll, spread, straddle, condor, butterfly |
 
 ## Key Concepts
 
@@ -81,4 +81,4 @@ buy "<leg1> <ratio1> <occ1> <leg2> <ratio2> <occ2>" <qty> AF @ <net_price>
 | `btc` | Buy to Close |
 | `stc` | Sell to Close |
 
-For full reference, see [references/ref-orders.md](references/ref-orders.md) and [references/ref-multi-leg.md](references/ref-multi-leg.md).
+For full reference, see [references/ref-orders.md](skills/alphameta-orders/references/ref-orders.md) and [references/ref-multi-leg.md](skills/alphameta-orders/references/ref-multi-leg.md).
