@@ -1,5 +1,5 @@
 ---
-name: alphameta-order
+name: alphameta-orders
 description: |
   Place, modify, and cancel orders via AlphaMeta (IBKR REST API). Supports stocks, options, and multi-leg combo orders (rolls, spreads, straddles, iron condors, butterflies). Use when: "下单", "买入", "卖出", "市价单", "限价单", "取消订单", "改单", "对冲", "roll", "spread", "straddle", "butterfly", "condor", "place order", "buy", "sell", "modify order", "cancel order", "options spread".
 ---

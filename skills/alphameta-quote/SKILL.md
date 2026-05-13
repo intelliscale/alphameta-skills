@@ -44,7 +44,7 @@ description: |
 
 | Category | Commands | Use For |
 |---|---|---|
-| [Live Quotes](references/ref-live-quotes.md) | `add`, `remove`, `qquote`, `depth`, `chains`, `prequalify`, `oadd`, `align`, `range`, `info` | Real-time quotes, option chains, market depth |
+| [Live Quotes](references/ref-live-quotes.md) | `add`, `remove`, `quote`, `depth`, `chains`, `prequalify`, `oadd`, `align`, `range`, `info` | Real-time quotes, option chains, market depth |
 | [Financial Data](references/ref-financial.md) | `financial` | EPS, revenue, P/E, market cap, analyst estimates |
 
 ## Key Concepts
@@ -64,12 +64,12 @@ NVDA260501C00175000
 
 Strike = price × 1000, zero-padded to 8 digits. Example: $175 → `00175000`
 
-### `add` vs `qquote`
+### `add` vs `quote`
 
 | Command | Speed | Multi-symbol | Requires subscription |
 |---|---|---|---|
 | `add` | Fast | No (one at a time) | Yes (subscribe first) |
-| `qquote` | Slow | Yes (batch) | No (one-time) |
+| `quote` | Slow | Yes (batch) | No (one-time) |
 
 ### Getting Option Chain
 
