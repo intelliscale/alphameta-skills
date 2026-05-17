@@ -1,13 +1,13 @@
 # AlphaMeta Skills
 
-![Skills](https://img.shields.io/badge/Skills-9-green?style=flat-square)
+![Skills](https://img.shields.io/badge/Skills-10-green?style=flat-square)
 [![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/kelvingao/.github/blob/main/profile/QR.png)
 
 AlphaMeta makes your AI assistant:
 - Fluent in your broker — ask about stock prices, your portfolio, positions, orders, and valuations in plain English or 中文, backed by real Interactive Brokers data
 - Fluent in quant trading — ask about trend analysis, trading signals, backtesting, and algo trading strategies in plain English or 中文, powered by real-time market data and quantitative models
 
-9 skills covering market data, order management, options strategies, portfolio analysis, technical indicators, charting, conditional automation, watchlists, and utilities across stocks / options / futures / crypto.
+10 skills covering market data, order management, options strategies, portfolio analysis, technical indicators, charting, conditional automation, watchlists, utilities, and base infrastructure across stocks / options / futures / crypto.
 
 ## Install
 
@@ -49,6 +49,7 @@ Ask your AI assistant naturally (supports 中文 / English):
 
 | Group | Skills |
 |---|---|
+| **Foundation** | [`alphameta`](skills/alphameta/SKILL.md) — Server setup, command execution, and command search reference; used by all other skills |
 | **Live Market Data** | [`alphameta-quote`](skills/alphameta-quote/SKILL.md) — Real-time quotes, option chains, market depth, fundamental data<br>[`alphameta-kline`](skills/alphameta-kline/SKILL.md) — Candlestick / OHLCV data, intraday minute series, historical bars |
 | **Order Management** | [`alphameta-orders`](skills/alphameta-orders/SKILL.md) — Place/modify/cancel orders, multi-leg strategies, rolling, spread |
 | **Portfolio** | [`alphameta-portfolio`](skills/alphameta-portfolio/SKILL.md) — Positions, P&L, balance, margin, leverage ratio |
