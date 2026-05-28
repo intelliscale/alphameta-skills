@@ -32,7 +32,7 @@ A successful response returns the result inside a `result` field, wrapped with `
 Health check:
 
 ```bash
-curl http://localhost:18080/health
+curl http://localhost:18080/api/v1/health
 ```
 
 ## Convention
