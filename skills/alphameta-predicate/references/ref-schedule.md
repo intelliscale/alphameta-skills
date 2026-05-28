@@ -12,7 +12,7 @@ Schedule tasks to automatically execute at specified times. Persists across rest
 
 ```bash
 # Schedule BTC quote at 09:30
-sched-add btc-morning 09:30 "qquote C:BTC"
+sched-add btc-morning 09:30 "quote C:BTC"
 
 # List scheduled tasks
 sched-list
@@ -25,7 +25,7 @@ sched-cancel btc-morning
 
 > **Time must be in future**: Cannot schedule times in the past.
 >
-> **Wrap command in quotes**: Arguments must use double quotes, e.g., `"qquote AAPL"`
+> **Wrap command in quotes**: Arguments must use double quotes, e.g., `"quote AAPL"`
 >
 > **Single execution only**: No daily repetition, auto-deletes after run.
 

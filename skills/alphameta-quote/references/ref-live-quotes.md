@@ -19,7 +19,7 @@ add NVDA260501C00175000  # OCC: NVDA | 260501 | C | $175
 add NVDA260501P00{150,175,200}000  # Puts: $150, $175, $200
 
 # Quick quotes (slow, supports multiple symbols)
-qquote NVDA AAPL MSFT
+quote NVDA AAPL MSFT
 
 # Option chain
 chains NVDA 05-01
@@ -31,9 +31,9 @@ info NVDA260501C00175000
 
 ## Gotchas
 
-> **`qquote`**: Slower one-time request, supports multiple symbols. Returns bid/ask/last/volume.
+> **`quote`**: Slower one-time request, supports multiple symbols. Returns bid/ask/last/volume.
 >
-> **`chains`**: Returns strikes only. Use `info`/`qquote` with OCC format for details.
+> **`chains`**: Returns strikes only. Use `info`/`quote` with OCC format for details.
 >
 > **`add` auto-saves**: Each `add` auto-calls `qsnapshot` to persist state.
 
@@ -43,7 +43,7 @@ info NVDA260501C00175000
 | ------------ | -------------------------------------------------------------------- |
 | `add`        | Add symbols to live watchlist (supports brace expansion)             |
 | `remove`     | Remove symbols from watchlist                                        |
-| `qquote`     | One-time quote with volatility (IV/HV)                               |
+| `quote`      | One-time quote with volatility (IV/HV)                               |
 | `depth`      | Market depth (multi-level BID/ASK)                                   |
 | `chains`     | Option chain strikes by expiration                                   |
 | `prequalify` | Pre-cache contract eligibility                                       |
