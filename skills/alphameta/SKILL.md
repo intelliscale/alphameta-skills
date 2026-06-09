@@ -12,7 +12,7 @@ Base reference for the AlphaMeta server. Other AlphaMeta skills assume this serv
 Start the server:
 
 ```bash
-alphameta start
+alphameta --ibkr
 ```
 
 The server listens on `http://localhost:18080`.

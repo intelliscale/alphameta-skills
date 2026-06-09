@@ -77,28 +77,7 @@ Always label currency. Sort groups by absolute notional descending. Group header
 
 Default market direction is **bullish** (not labeled). Only label legs that are **bearish** with `**bearish**` — determined by: `(PC == 'P' AND position > 0)` for long puts, or `(PC == 'C' AND position < 0)` for short calls.
 
-## Prerequisites
-
-```bash
-# Start service
-alphameta start
-
-# Check health
-curl "http://127.0.0.1:18080/health"
-
-# Execute command
-curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
-  -H "Content-Type: application/json" \
-  -d '{"cmd": "<command>"}'
-```
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/health` | GET | Health check with IB connection status |
-| `/api/v1/search` | GET | Search commands `?category=&query=` |
-| `/api/v1/execute` | POST | Execute command `{"cmd": "..."}` |
+See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
 ## Command Index
 

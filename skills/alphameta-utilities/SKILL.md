@@ -8,22 +8,7 @@ description: |
 
 > **Response language**: match the user's input language (Simplified Chinese / Traditional Chinese / English).
 
-## Quick Start
-
-```bash
-alphameta start
-curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
-  -H "Content-Type: application/json" \
-  -d '{"cmd": "<command>"}'
-```
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/health` | GET | Health check |
-| `/api/v1/search` | GET | Search commands |
-| `/api/v1/execute` | POST | Execute command |
+See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
 ## Command Index
 

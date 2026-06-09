@@ -148,28 +148,7 @@ Run `alphameta-orders` with the legs above, or use /alphameta-orders for natural
 | **Risk Reversal** | Synthetic long / short | Sell OTM put + Buy OTM call (bullish) / Buy OTM put + Sell OTM call (bearish) | Put strike − credit (bullish) | Unlimited (bullish) | Call strike + debit (or − credit) |
 | **Ratio Spread** | Reduced cost directional | Buy 1 ATM call + Sell 2 OTM calls | Limited (short strikes width) | Max at short strike | Between strikes |
 
-## Prerequisites
-
-```bash
-# Start service
-alphameta start
-
-# Check health
-curl "http://127.0.0.1:18080/health"
-
-# Execute command
-curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
-  -H "Content-Type: application/json" \
-  -d '{"cmd": "<command>"}'
-```
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/health` | GET | Health check with IB connection status |
-| `/api/v1/search` | GET | Search commands |
-| `/api/v1/execute` | POST | Execute command |
+See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
 ## Command Index
 

@@ -20,22 +20,7 @@ Persistent named groups of securities, stored locally via AlphaMeta's quote grou
 - "删除我的 test 分组" / "Delete my test group" — remove an entire group
 - "批量查看自选股行情" / "Watchlist batch check" — get symbols then route to `alphameta-quote` or `alphameta-portfolio`
 
-## Quick Start
-
-```bash
-# Start service (if not running)
-alphameta start
-
-# List all watchlist groups
-curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
-  -H "Content-Type: application/json" \
-  -d '{"cmd": "qlist"}'
-
-# Add symbols to a group (creates group if needed)
-curl -X POST "http://127.0.0.1:18080/api/v1/execute" \
-  -H "Content-Type: application/json" \
-  -d '{"cmd": "qadd tech-stocks NVDA AAPL MSFT"}'
-```
+See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
 ## Workflow
 
@@ -135,27 +120,7 @@ qremove tech AAPL → null (success)
 
 > Removed AAPL from **tech**.
 
-## Prerequisites
-
-```bash
-# Start the AlphaMeta service
-alphameta start
-
-# Check health
-curl "http://127.0.0.1:18080/health"
-# → {"status": "ok", "ib_connected": true}
-```
-
 **No prior service login needed for CRUD.** Watchlist data is stored locally in diskcache and is available even when IBKR is disconnected. Only the live quote routing step (`alphameta-quote`) requires a connected service.
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/health` | GET | Health check with IB connection status |
-| `/api/v1/execute` | POST | Execute command `{"cmd": "..."}` |
-
-**No `/api/v1/search` needed** — the command set is fixed and documented below.
 
 ## Command Index
 

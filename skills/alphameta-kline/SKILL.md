@@ -139,26 +139,7 @@ Trend: Opened with a spike to $233.22, then gradual selloff through the morning.
 
 Always attach ▲/▼ direction arrows to net move. Cite source: AlphaMeta / Interactive Brokers.
 
-## Prerequisites
-
-```bash
-# Start the AlphaMeta service (if not running)
-alphameta start
-
-# Verify service health and IB connection
-curl "http://127.0.0.1:18080/health"
-
-# List available kline commands
-curl "http://127.0.0.1:18080/api/v1/search?query=kline"
-```
-
-## API Endpoints
-
-| Endpoint | Method | Description |
-|---|---|---|
-| `/health` | GET | Health check with IB connection status |
-| `/api/v1/search` | GET | Search commands `?category=&query=` |
-| `/api/v1/execute` | POST | Execute command `{"cmd": "..."}` |
+See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
 ## Key Concepts
 
