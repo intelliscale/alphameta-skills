@@ -1,13 +1,13 @@
 # AlphaMeta Skills
 
-![Skills](https://img.shields.io/badge/Skills-11-green?style=flat-square)
+![Skills](https://img.shields.io/badge/Skills-13-green?style=flat-square)
 [![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/kelvingao/.github/blob/main/profile/QR.png)
 
 AlphaMeta makes your AI assistant:
 - Fluent in your broker — ask about stock prices, your portfolio, positions, orders, and valuations in plain English or 中文, backed by real Interactive Brokers data
 - Fluent in quant trading — ask about trend analysis, trading signals, backtesting, and algo trading strategies in plain English or 中文, powered by real-time market data and quantitative models
 
-11 skills covering market data, order management, options strategies, portfolio analysis, earnings analysis, technical indicators, charting, conditional automation, watchlists, utilities, and base infrastructure across stocks / options / futures / crypto.
+13 skills covering market data, order management, options strategies, hedging, risk analysis, portfolio analysis, earnings analysis, technical indicators, charting, conditional automation, watchlists, utilities, and base infrastructure across stocks / options / futures / crypto.
 
 ## Install
 
@@ -55,6 +55,7 @@ Ask your AI assistant naturally (supports 中文 / English):
 | **Portfolio** | [`alphameta-portfolio`](skills/alphameta-portfolio/SKILL.md) — Positions, P&L, balance, margin, leverage ratio |
 | **Fundamental Research** | [`alphameta-earnings`](skills/alphameta-earnings/SKILL.md) — Post-earnings analysis and institutional-grade earnings update reports (8–12 page DOCX); beat/miss, segment breakdown, guidance, valuation |
 | **Options Strategy** | [`alphameta-options-strategy`](skills/alphameta-options-strategy/SKILL.md) — Strategy recommendation based on market view and IV; covered call, straddle, spread, iron condor, butterfly |
+| **Hedging & Risk** | [`alphameta-hedging`](skills/alphameta-hedging/SKILL.md) — Hedge strategy design; Beta hedge, protective put, collar, tail risk hedges, currency hedge, cost assessment<br>[`alphameta-risk-analysis`](skills/alphameta-risk-analysis/SKILL.md) — Portfolio risk metrics, VaR, CVaR, stress testing, max drawdown, Sharpe ratio |
 | **Technical Analysis** | [`alphameta-technical`](skills/alphameta-technical/SKILL.md) — IV, Greeks (delta/gamma/vega/theta), max pain, gamma exposure |
 | **Automation** | [`alphameta-predicate`](skills/alphameta-predicate/SKILL.md) — Conditional triggers, monitoring, auto-execution |
 | **Utilities** | [`alphameta-utilities`](skills/alphameta-utilities/SKILL.md) — Calculator, calendar, TTS alerts, paper trading, simulate<br>[`alphameta-watchlist`](skills/alphameta-watchlist/SKILL.md) — Named symbol groups, persistent local watchlists |
@@ -67,13 +68,13 @@ You need the AlphaMeta server running (for live quotes, your positions, orders):
 
 ```bash
 # Install
-curl -fsSL https://alphameta.app/install.sh | bash
+pip install alphameta
 
 # Start Server
-alphameta start
+alphameta --ibkr
 
 # Check status
-curl "http://127.0.0.1:18080/health"
+curl "http://127.0.0.1:18080/api/v1/health"
 # → {"status": "ok", "ib_connected": true, "account_id": "U12345678"}
 ```
 
