@@ -1,13 +1,13 @@
 # AlphaMeta Skills
 
-![Skills](https://img.shields.io/badge/Skills-13-green?style=flat-square)
+![Skills](https://img.shields.io/badge/Skills-14-green?style=flat-square)
 [![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/kelvingao/.github/blob/main/profile/QR.png)
 
 AlphaMeta makes your AI assistant:
 - Fluent in your broker — ask about stock prices, your portfolio, positions, orders, and valuations in plain English or 中文, backed by real Interactive Brokers data
 - Fluent in quant trading — ask about trend analysis, trading signals, backtesting, and algo trading strategies in plain English or 中文, powered by real-time market data and quantitative models
 
-13 skills covering market data, order management, options strategies, hedging, risk analysis, portfolio analysis, earnings analysis, technical indicators, charting, conditional automation, watchlists, utilities, and base infrastructure across stocks / options / futures / crypto.
+14 skills covering market data, order management, options strategies, hedging, risk analysis, portfolio analysis, earnings analysis, technical indicators, charting, conditional automation, watchlists, utilities, market intelligence, and base infrastructure across stocks / options / futures / crypto.
 
 ## Install
 
@@ -42,6 +42,7 @@ Ask your AI assistant naturally (supports 中文 / English):
 - *"计算 GLD260501P440 的 delta 和 gamma"* / *"What's the delta on GLD260501P440?"*
 - *"当 TSLA 跌破 150 美元时平仓"* / *"Close my TSLA position if it drops below $150"*
 - *"显示 GLD 期权链，IV 排序"* / *"Show me GLD option chain sorted by IV"*
+- *"给我今天的晨报"* / *"Generate my morning market briefing"*
 
 ---
 
@@ -59,6 +60,7 @@ Ask your AI assistant naturally (supports 中文 / English):
 | **Technical Analysis** | [`alphameta-technical`](skills/alphameta-technical/SKILL.md) — IV, Greeks (delta/gamma/vega/theta), max pain, gamma exposure |
 | **Automation** | [`alphameta-predicate`](skills/alphameta-predicate/SKILL.md) — Conditional triggers, monitoring, auto-execution |
 | **Utilities** | [`alphameta-utilities`](skills/alphameta-utilities/SKILL.md) — Calculator, calendar, TTS alerts, paper trading, simulate<br>[`alphameta-watchlist`](skills/alphameta-watchlist/SKILL.md) — Named symbol groups, persistent local watchlists |
+| **Market Intelligence** | [`alphameta-insights`](skills/alphameta-insights/SKILL.md) — Morning briefing, market scanning, top movers, catalyst monitoring, sector rotation, event-driven strategies; see [`references/morning-brief.md`](skills/alphameta-insights/references/morning-brief.md) for the daily briefing workflow |
 
 ---
 
