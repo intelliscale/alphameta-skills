@@ -1,13 +1,13 @@
 # AlphaMeta Skills
 
-![Skills](https://img.shields.io/badge/Skills-14-green?style=flat-square)
-[![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/kelvingao/.github/blob/main/profile/QR.png)
+![Skills](https://img.shields.io/badge/Skills-12-green?style=flat-square)
+[![WeChat](https://img.shields.io/badge/WeChat-Group-C5EAB4?style=flat&logo=wechat&logoColor=white)](https://github.com/intelliscale/.github/blob/main/profile/QR.png)
 
 AlphaMeta makes your AI assistant:
 - Fluent in your broker — ask about stock prices, your portfolio, positions, orders, and valuations in plain English or 中文, backed by real Interactive Brokers data
 - Fluent in quant trading — ask about trend analysis, trading signals, backtesting, and algo trading strategies in plain English or 中文, powered by real-time market data and quantitative models
 
-14 skills covering market data, order management, options strategies, hedging, risk analysis, portfolio analysis, earnings analysis, technical indicators, charting, conditional automation, watchlists, utilities, market intelligence, and base infrastructure across stocks / options / futures / crypto.
+12 skills covering market data, fundamentals, technical analysis, trading, portfolio, automation, quant, watchlist, utilities, market intelligence, earnings, and base infrastructure across stocks / options / futures / crypto.
 
 ## Install
 
@@ -16,7 +16,7 @@ AlphaMeta makes your AI assistant:
 npx skills add intelliscale/alphameta-skills -g
 
 # Or just one skill, globally
-npx skills add intelliscale/alphameta-skills -g --skill alphameta-orders
+npx skills add intelliscale/alphameta-skills -g --skill alphameta-trading
 ```
 
 ---
@@ -28,7 +28,7 @@ npx skills add intelliscale/alphameta-skills -g --skill alphameta-orders
 npx skills update -g
 
 # Update a single skill
-npx skills update alphameta-orders -g
+npx skills update alphameta-trading -g
 ```
 
 ---
@@ -51,16 +51,17 @@ Ask your AI assistant naturally (supports 中文 / English):
 | Group | Skills |
 |---|---|
 | **Foundation** | [`alphameta`](skills/alphameta/SKILL.md) — Server setup, command execution, and command search reference; used by all other skills |
-| **Live Market Data** | [`alphameta-quote`](skills/alphameta-quote/SKILL.md) — Real-time quotes, option chains, market depth, fundamental data<br>[`alphameta-kline`](skills/alphameta-kline/SKILL.md) — Candlestick / OHLCV data, intraday minute series, historical bars |
-| **Order Management** | [`alphameta-orders`](skills/alphameta-orders/SKILL.md) — Place/modify/cancel orders, multi-leg strategies, rolling, spread |
-| **Portfolio** | [`alphameta-portfolio`](skills/alphameta-portfolio/SKILL.md) — Positions, P&L, balance, margin, leverage ratio |
-| **Fundamental Research** | [`alphameta-earnings`](skills/alphameta-earnings/SKILL.md) — Post-earnings analysis and institutional-grade earnings update reports (8–12 page DOCX); beat/miss, segment breakdown, guidance, valuation |
-| **Options Strategy** | [`alphameta-options-strategy`](skills/alphameta-options-strategy/SKILL.md) — Strategy recommendation based on market view and IV; covered call, straddle, spread, iron condor, butterfly |
-| **Hedging & Risk** | [`alphameta-hedging`](skills/alphameta-hedging/SKILL.md) — Hedge strategy design; Beta hedge, protective put, collar, tail risk hedges, currency hedge, cost assessment<br>[`alphameta-risk-analysis`](skills/alphameta-risk-analysis/SKILL.md) — Portfolio risk metrics, VaR, CVaR, stress testing, max drawdown, Sharpe ratio |
-| **Technical Analysis** | [`alphameta-technical`](skills/alphameta-technical/SKILL.md) — IV, Greeks (delta/gamma/vega/theta), max pain, gamma exposure |
-| **Automation** | [`alphameta-predicate`](skills/alphameta-predicate/SKILL.md) — Conditional triggers, monitoring, auto-execution |
-| **Utilities** | [`alphameta-utilities`](skills/alphameta-utilities/SKILL.md) — Calculator, calendar, TTS alerts, paper trading, simulate<br>[`alphameta-watchlist`](skills/alphameta-watchlist/SKILL.md) — Named symbol groups, persistent local watchlists |
-| **Market Intelligence** | [`alphameta-insights`](skills/alphameta-insights/SKILL.md) — Morning briefing, market scanning, top movers, catalyst monitoring, sector rotation, event-driven strategies; see [`references/morning-brief.md`](skills/alphameta-insights/references/morning-brief.md) for the daily briefing workflow |
+| **Market Data** | [`alphameta-market-data`](skills/alphameta-market-data/SKILL.md) — Quotes, k-line, option chains, market depth, intraday, pattern recognition |
+| **Fundamentals** | [`alphameta-fundamental`](skills/alphameta-fundamental/SKILL.md) — Financial statements, analyst consensus, SEC filings, institutional flows, insider trades |
+| **Technical Analysis** | [`alphameta-technical`](skills/alphameta-technical/SKILL.md) — Greeks, IV/HV, max pain, GEX, k-line patterns |
+| **Trading** | [`alphameta-trading`](skills/alphameta-trading/SKILL.md) — Options strategies, place/modify/cancel orders, multi-leg combos |
+| **Portfolio** | [`alphameta-portfolio`](skills/alphameta-portfolio/SKILL.md) — Positions, P&L, balance, margin, risk analysis, hedging, portfolio diagnosis |
+| **Automation** | [`alphameta-automation`](skills/alphameta-automation/SKILL.md) — Conditional triggers (price/RSI/EMA), scheduled tasks |
+| **Quant** | [`alphameta-quant`](skills/alphameta-quant/SKILL.md) — Quantitative strategies, factor models |
+| **Watchlist** | [`alphameta-watchlist`](skills/alphameta-watchlist/SKILL.md) — Named symbol groups, add/remove symbols, local persistence |
+| **Utilities** | [`alphameta-utilities`](skills/alphameta-utilities/SKILL.md) — Calculator, calendar, TTS, paper trading, market strength reporter |
+| **Market Intelligence** | [`alphameta-intelligence`](skills/alphameta-intelligence/SKILL.md) — Screener, top movers, morning brief, sector rotation, anomalies |
+| **Earnings** | [`alphameta-earnings`](skills/alphameta-earnings/SKILL.md) — Post-earnings analysis, beat/miss, segment breakdown, DOCX report |
 
 ---
 
