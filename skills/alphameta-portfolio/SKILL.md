@@ -117,7 +117,7 @@ For full reference, see [references/ref-portfolio.md](references/ref-portfolio.m
 
 ## Related Skills
 
-- "What's this stock's current price?" → `alphameta-quote`
+- "What's this stock's current price?" → `alphameta-market-data`
 - "What are the Greeks for this option?" → `alphameta-technical`
-- "Close this position" → `alphameta-orders`
+- "Close this position" → `alphameta-trading`
 - "Set a stop-loss if X drops below Y" → `alphameta-predicate`

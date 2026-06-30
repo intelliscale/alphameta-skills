@@ -53,4 +53,20 @@ Maximum pain strike = the price where maximum total option value expires worthle
 maxpain NVDA 05-01
 ```
 
+### OCC Format
+
+`info` and `details` commands require OCC-format option symbols:
+
+```
+SYMBOL + YYMMDD + C|P + 8-DIGIT_STRIKE
+
+Example: NVDA260501C00175000
+  NVDA    → Underlying
+  260501  → May 1, 2026
+  C       → Call
+  00175000 → $175.00 (price × 1000, 8 digits)
+```
+
+For full reference on `info`/`quote` commands, see [`alphameta-market-data`](../alphameta-market-data).
+
 For full reference, see [references/ref-indicators.md](references/ref-indicators.md) and [references/ref-utilities.md](references/ref-utilities.md).

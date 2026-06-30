@@ -1,7 +1,7 @@
 ---
 name: alphameta-watchlist
 description: |
-  Named grouping of symbols (stocks, options, futures) persisted locally via AlphaMeta. Read your watchlist groups, create new groups, add/remove symbols, delete groups. All data is stored locally — no remote state changes, no broker involvement. Supports full workflow: get symbols from a group → route to alphameta-quote for batch quotes, or alphameta-portfolio for position checks.
+  Named grouping of symbols (stocks, options, futures) persisted locally via AlphaMeta. Read your watchlist groups, create new groups, add/remove symbols, delete groups. All data is stored locally — no remote state changes, no broker involvement. Supports full workflow: get symbols from a group → route to alphameta-market-data for batch quotes, or alphameta-portfolio for position checks.
 
   Triggers: "我的自选股", "自选股有哪些", "我关注的股票", "我的分组", "把 X 加到自选", "添加到自选", "创建分组", "删除自选", "删除分组", "自選股", "關注的股票", "分組", "把 X 加到自選", "新增至自選", "建立分組", "刪除自選", "刪除分組", "watchlist", "my watchlist", "favorited stocks", "watch groups", "add to watchlist", "remove from watchlist", "create group", "delete group", "rename group".
 ---
@@ -18,7 +18,7 @@ Persistent named groups of securities, stored locally via AlphaMeta's quote grou
 - "把 NVDA 加入我的自选" / "Add NVDA to my watchlist" — create or append symbols to a group
 - "从自选里移除 AAPL" / "Remove AAPL from my watchlist" — delete a symbol from a group
 - "删除我的 test 分组" / "Delete my test group" — remove an entire group
-- "批量查看自选股行情" / "Watchlist batch check" — get symbols then route to `alphameta-quote` or `alphameta-portfolio`
+- "批量查看自选股行情" / "Watchlist batch check" — get symbols then route to `alphameta-market-data` or `alphameta-portfolio`
 
 See the [alphameta](../alphameta) skill for server setup and command execution syntax.
 
@@ -31,7 +31,7 @@ See the [alphameta](../alphameta) skill for server setup and command execution s
    - `symbols`: all symbols saved in the group
    - `live`: subset of symbols currently streaming live quotes
 3. Filter by group name (LLM-side) if user asks for a specific group.
-4. To batch-check prices, pass the symbols to `alphameta-quote`:
+4. To batch-check prices, pass the symbols to `alphameta-market-data`:
    ```
    Extract symbols → curl POST /api/v1/execute {"cmd": "quote <symbols>"}
    ```
@@ -55,7 +55,7 @@ All mutations are local (diskcache). No remote side effects.
 
 | User asks | Flow |
 |-----------|------|
-| "My watchlist stocks' gainers today" | `qlist` → extract symbols → `alphameta-quote` (batch quote) |
+| "My watchlist stocks' gainers today" | `qlist` → extract symbols → `alphameta-market-data` (batch quote) |
 | "Are any of my watchlist options ITM?" | `qlist` → extract symbols → `alphameta-technical` (greeks/IV) |
 | "Check if these positions are in my portfolio" | `qlist` → extract symbols → `alphameta-portfolio` (positions filter) |
 | "Save my current quotes as a watchlist group" | `qsave <name>` (no symbols → saves live quotes) |
@@ -73,7 +73,7 @@ All mutations are local (diskcache). No remote side effects.
 
 - Using `qsave` when user says "add" — `qsave` creates/replaces, `qadd` appends. GET IT RIGHT.
 - Calling `qdelete` without a brief confirmation — the group is gone permanently.
-- Forgetting to route symbols to the display skill — listing symbols without prices is only useful for inventory. If user asks "how are they doing", immediately chain to `alphameta-quote`.
+- Forgetting to route symbols to the display skill — listing symbols without prices is only useful for inventory. If user asks "how are they doing", immediately chain to `alphameta-market-data`.
 - Group name collisions — if `qadd` target doesn't exist, it creates it. If user said "add to group X" and X doesn't exist, warn them it'll be created.
 - Treating `client-{id}` groups as user watchlists — these are auto-generated system snapshots. `qadd`/`qremove` edits will be overwritten. `qdelete` breaks startup auto-restore. Do not manage them manually.
 - Assuming `global` is the primary restore source — `client-{id}` snapshot takes priority on startup. `global` is only a fallback.
@@ -120,7 +120,7 @@ qremove tech AAPL → null (success)
 
 > Removed AAPL from **tech**.
 
-**No prior service login needed for CRUD.** Watchlist data is stored locally in diskcache and is available even when IBKR is disconnected. Only the live quote routing step (`alphameta-quote`) requires a connected service.
+**No prior service login needed for CRUD.** Watchlist data is stored locally in diskcache and is available even when IBKR is disconnected. Only the live quote routing step (`alphameta-market-data`) requires a connected service.
 
 ## Command Index
 
@@ -202,7 +202,7 @@ The q* commands (qlist, qadd, qsave, qremove, qdelete) are the same system used 
 
 ## Related Skills
 
-- "What's the current price of my watchlist?" → `alphameta-quote`
+- "What's the current price of my watchlist?" → `alphameta-market-data`
 - "How are my watchlist options performing?" → `alphameta-technical`
 - "Are any watchlist symbols in my portfolio?" → `alphameta-portfolio`
 - "Set an alert if a watchlist symbol drops below X" → `alphameta-predicate`

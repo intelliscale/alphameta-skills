@@ -76,7 +76,7 @@ This skill is the heaviest in the family (institutional-grade 8–12 page DOCX).
 | Multi-period operating KPIs | `operating` command |
 | Price chart & technicals | [`alphameta-kline`](../alphameta-kline) |
 | Stock news | `news` command |
-| Live quote & fundamentals | [`alphameta-quote`](../alphameta-quote) |
+| Live quote & fundamentals | [`alphameta-market-data`](../alphameta-market-data) |
 
 If the user wants the full earnings DOCX *plus* one of the above (e.g. "earnings update on TSLA and how its valuation compares"), do this skill first, then chain to the other.
 

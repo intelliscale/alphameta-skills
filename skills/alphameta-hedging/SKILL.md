@@ -22,7 +22,7 @@ Design and evaluate hedging strategies for a portfolio or single position using 
 - _"我的组合风险太高了，帮我对冲一下"_ / _"my portfolio is too risky, design a hedge"_
 - _"我想给 AAPL 买个保险"_ / _"I want to buy insurance for AAPL"_
 
-For option pricing and Greeks, use `alphameta-derivatives` (if available) or `alphameta-technical` + `alphameta-quote`. For portfolio-level P&L, use `alphameta-portfolio`.
+For option pricing and Greeks, use `alphameta-derivatives` (if available) or `alphameta-technical` + `alphameta-market-data`. For portfolio-level P&L, use `alphameta-portfolio`.
 
 ## Workflow
 
@@ -72,7 +72,8 @@ Present: number of contracts, hedge cost, and residual Beta after hedge.
 - Cost = put premium; protection kicks in below strike.
 - Effective floor = Strike − Premium paid.
 - 具体期权合约是否适用，请根据自身持仓情况和风险偏好独立判断。
-- Fetch available strikes: `chain <SYMBOL>`.
+- Fetch available strikes: `chain <SYMBOL>` (returns OCC-format symbols).
+- Verify premium via `info <OCC>` — OCC format: `SYMBOL + YYMMDD + C/P + 8-digit strike×1000`. For details, see [`alphameta-market-data`](../alphameta-market-data).
 
 **Collar Strategy** (zero-cost or near-zero):
 
@@ -136,7 +137,7 @@ Present results in structured markdown:
 Implementation:
 - Instrument: {SPY fut / NVDA put / GLD / etc.}
 - Size: {N contracts / $N notional}
-- Entry price / premium: ${X} (verified via `info` / `quote`)
+- Entry price / premium: ${X} (verified via `info` / `quote`; OCC format, see [`alphameta-market-data`](../alphameta-market-data))
 - {For options}: Put strike: ${X} | Call strike: ${X} | Net cost: ${X}
 
 Cost vs Protection:
@@ -179,11 +180,11 @@ Always note: hedging reduces risk but also limits upside.
 
 | If the user wants ...                    | Use                                                     |
 | ---------------------------------------- | ------------------------------------------------------- |
-| Current price / option chain / premium   | [`alphameta-quote`](../alphameta-quote)                 |
+| Current price / option chain / premium   | [`alphameta-market-data`](../alphameta-market-data)                 |
 | Greeks, IV, max pain, gamma exposure     | [`alphameta-technical`](../alphameta-technical)         |
 | OHLCV data for Beta calculation          | [`alphameta-kline`](../alphameta-kline)                 |
 | Portfolio positions, balance, P&L        | [`alphameta-portfolio`](../alphameta-portfolio)         |
-| Execute this hedge as an order           | [`alphameta-orders`](../alphameta-orders)               |
+| Execute this hedge as an order           | [`alphameta-trading`](../alphameta-trading)               |
 | Set a stop-loss or conditional exit      | [`alphameta-predicate`](../alphameta-predicate)         |
 | Portfolio risk metrics, VaR, stress test | [`alphameta-risk-analysis`](../alphameta-risk-analysis) |
 

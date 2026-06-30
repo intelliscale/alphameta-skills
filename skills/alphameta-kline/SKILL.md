@@ -190,7 +190,7 @@ Surface `error.message` to the user — never silently retry.
 
 ## Related Skills
 
-- "What's this stock's current price?" → `alphameta-quote`
+- "What's this stock's current price?" → `alphameta-market-data`
 - "What are the Greeks or technical indicators?" → `alphameta-technical`
-- "What's the option chain for this symbol?" → `alphameta-quote`
+- "What's the option chain for this symbol?" → `alphameta-market-data`
 

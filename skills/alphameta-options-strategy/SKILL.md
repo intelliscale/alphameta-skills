@@ -19,7 +19,7 @@ Recommend and explain options strategies based on the user's market view (bullis
 - "SPY 现在是该卖波动率还是买波动率？" / "Should I be short or long vol on SPY right now?"
 - "帮我看看这个期权组合的风险收益" / "Analyze this options combo for me"
 
-For execution (placing the actual order) route to `alphameta-orders`. For P&L/Greeks analysis of existing positions route to `alphameta-technical`.
+For execution (placing the actual order) route to `alphameta-trading`. For P&L/Greeks analysis of existing positions route to `alphameta-technical`.
 
 ## Workflow
 
@@ -55,7 +55,7 @@ For execution (placing the actual order) route to `alphameta-orders`. For P&L/Gr
 
 ## Red Flags
 
-- User says "I don't know my market view" — they are not ready for options. Guide them to `alphameta-quote` and `alphameta-technical` for market context first.
+- User says "I don't know my market view" — they are not ready for options. Guide them to `alphameta-market-data` and `alphameta-technical` for market context first.
 - IV/HV ratio is missing from the recommendation — incomplete analysis. Always compute it.
 - Recommending short options (naked calls/puts) without warning about unlimited risk — must flag.
 - Using IV from a single OTM strike instead of ATM — ATM IV is the standard reference.
@@ -118,7 +118,7 @@ Risk note: {key risk of this strategy}
 {Brief description, key trade-offs vs primary recommendation}
 
 [How to execute]
-Run `alphameta-orders` with the legs above, or use /alphameta-orders for natural-language order placement.
+Run `alphameta-trading` with the legs above, or use /alphameta-trading for natural-language order placement.
 
 ⚠️ 以上分析仅供参考，不构成投资建议。For reference only. Not investment advice.
 ```
@@ -158,7 +158,7 @@ See the [alphameta](../alphameta) skill for server setup and command execution s
 | Technical Indicators | `maxpain`, `gex` | Max pain, gamma exposure analysis |
 | Contract Details | `details`, `info` | Contract metadata with Greeks |
 
-For full command reference, see `alphameta-quote` and `alphameta-technical`.
+For full command reference, see `alphameta-market-data` and `alphameta-technical`.
 
 ## Key Concepts
 
@@ -186,7 +186,7 @@ Example: NVDA260501C00175000
 
 ### Options Order Routing
 
-For strategy execution, see `alphameta-orders` with multi-leg syntax:
+For strategy execution, see `alphameta-trading` with multi-leg syntax:
 
 ```bash
 # Bull Call Spread
@@ -196,7 +196,7 @@ buy "bto 1 <low_call_OCC> sto 1 <high_call_OCC>" <qty> AF @ <net_debit>
 buy "btc 1 <old_OCC> sto 1 <new_OCC>" <qty> AF @ -<net_credit>
 ```
 
-See [ref-multi-leg.md](../alphameta-orders/references/ref-multi-leg.md) for full syntax.
+See [ref-multi-leg.md](../alphameta-trading/references/ref-multi-leg.md) for full syntax.
 
 ## Error Handling
 
@@ -211,8 +211,8 @@ See [ref-multi-leg.md](../alphameta-orders/references/ref-multi-leg.md) for full
 
 ## Related Skills
 
-- "What's this stock's current price?" → `alphameta-quote`
+- "What's this stock's current price?" → `alphameta-market-data`
 - "What are the Greeks for this option?" → `alphameta-technical`
-- "Execute this strategy as an order" → `alphameta-orders`
+- "Execute this strategy as an order" → `alphameta-trading`
 - "What's my current option position P&L?" → `alphameta-portfolio`
 - "Set a stop-loss or conditional exit" → `alphameta-predicate`
